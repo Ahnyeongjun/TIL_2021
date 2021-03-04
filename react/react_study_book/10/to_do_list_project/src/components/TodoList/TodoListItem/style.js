@@ -16,16 +16,23 @@ export const CheckBox = styled.div`
     flex:1;
     display:flex;
     align-items: center;
+
     svg{
         font-size:1.5rem;
     }
+        ${props => props.checked2 &&
+        css`
+        svg{
+            color:#22b8cf;
+        }
+        
+          `
+    } 
 `
 export const Text = styled.div`
     margin-left:0.5rem;
     flex:1;
-    svg{
-        font-size:1.5rem;
-    }
+  
     ${props => props.checked2 &&
         css`
         svg{
