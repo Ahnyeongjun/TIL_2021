@@ -7,6 +7,7 @@ styled-components = 스타일을 자바스크립트 파일에 내장시키는 �
 #### display 
 
 - none = 화면에서 사라짐, 크기 자체도 차지하지 않음.
+- flex = 수직 쌓임
 
 - block = div가 갖게되는 기본값 기본적으로 width가 자산의 컨테이너의 100%가 됨	
 
