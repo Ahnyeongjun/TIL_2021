@@ -6,8 +6,8 @@ import {
 } from 'react-icons/md';
 import * as S from './style';
 
-const TodoListItem = ({ todo }) => {
-    const { text, checked } = todo;
+const TodoListItem = ({ todo, onRemove }) => {
+    const { id, text, checked } = todo;
 
     return (
         <S.TodoListItem>
@@ -15,7 +15,7 @@ const TodoListItem = ({ todo }) => {
                 {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
                 <S.Text checked2={checked}>{text}</S.Text>
             </S.CheckBox>
-            <S.Remove>
+            <S.Remove onClick={() => onRemove(id)}>
                 <MdRemoveCircleOutline />
             </S.Remove>
         </S.TodoListItem>
