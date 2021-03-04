@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const TodoInsert = styled.div`
+export const TodoInsert = styled.form`
   display: flex;
   background: #495057;
   input {
