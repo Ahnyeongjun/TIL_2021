@@ -3,26 +3,24 @@ import TodoTemplate from './components/TodoTemplate/TodoTemplate';
 import TodoInsert from './components/TodoInsert/TodoInsert';
 import TodoList from './components/TodoList/TodoList';
 
-const App = () => {
-  const [todos, setTodos] = useState([
-    {
+function createBulkTodos() {
+  const array = [];
+  for (let i = 1; i <= 2500; i++) {
+    array.push({
       id: 1,
-      text: '리액트',
-      checked: true,
-    },
-    {
-      id: 2,
-      text: '컴포넌트',
-      checked: true,
-    },
-    {
-      id: 3,
-      text: '일정관리앱',
+      text: `할 일 ${i}`,
       checked: false,
-    }
-  ]);
+    });
+  }
+  return array;
+}
 
-  const nextId = useRef(4);
+const App = () => {
+  const [todos, setTodos] = useState(
+    createBulkTodos
+  );
+
+  const nextId = useRef(2500);
 
   const onInsert = useCallback(
     text => {
@@ -31,21 +29,21 @@ const App = () => {
         text,
         checked: false,
       };
-      setTodos(todos.concat(todo));
+      setTodos(todos => todos.concat(todo));
       nextId.current += 1;
     },
     [todos],
   );
   const onRemove = useCallback(
     id => {
-      setTodos(todos.filter(todo => todo.id !== id));
+      setTodos(todos => todos.filter(todo => todo.id !== id));
     },
     [todos],
   );
 
   const onToggle = useCallback(
     id => {
-      setTodos(
+      setTodos(todos =>
         todos.map(todo =>
           todo.id === id ? {
             ...todo, checked: !todo.checked
