@@ -8,7 +8,7 @@ export const TodoTemplate = styled.div`
     border-radius: 4px;
     overflow: hidden;
 `
-export const app_title = styled.div`
+export const AppTitle = styled.div`
         display: flex;
         color: white;
         height: 4rem;
@@ -18,7 +18,7 @@ export const app_title = styled.div`
         background: #22b8cf;
     
     `
-export const content_a = styled.div`
+export const Content = styled.div`
     background: white;
     
 `
