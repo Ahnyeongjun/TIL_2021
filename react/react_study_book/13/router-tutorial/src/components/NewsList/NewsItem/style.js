@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const NewsItemBlock = styled.div`
-grid-column-start:1;
-grid-column-end:3;
+display:flex;
+
 &+&{
     margin-top:3rem;
 }

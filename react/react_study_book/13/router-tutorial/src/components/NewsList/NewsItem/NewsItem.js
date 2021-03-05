@@ -18,6 +18,7 @@ const NewsItem = ({ article }) => {
                         {title}
                     </a>
                 </h2>
+                <p>{description}</p>
             </S.Contents>
         </S.NewsItemBlock>
     )
