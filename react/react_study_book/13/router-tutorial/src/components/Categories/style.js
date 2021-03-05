@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export const CategoriBlock = styled.div`
     display: flex;
@@ -11,7 +12,7 @@ export const CategoriBlock = styled.div`
     }
 
 `;
-export const Category = styled.div`
+export const Category = styled(NavLink)`
     font-size: 1.125rem;
     cursor: pointer;
     white-space:pre;
@@ -22,17 +23,26 @@ export const Category = styled.div`
     &:hover{
         color: #495027;
     }
-    &+&{
-        margin-left:1rem;
-    }
-    ${props =>
-        props.active && css`
+    &.active{
         font-weight:600;
         border-bottom:2px solid #22b8cf;
         color: #22b8cf;
         &:hover{
             color:#3bc9db;
         }
-    `}
+    }
+    &+&{
+        margin-left:1rem;
+    }
+    /* ${props =>
+        props.active && css`
+        font-weight:600;
+        border-bottom:2px solid #22b8cf;
+        color: #22b8cf;
+        &:hover{
+            color:#3bc9db;
+        } */
+    /* `} */
 `;
+
 

@@ -35,9 +35,15 @@ const Categories = () => {
     return (
         <S.CategoriBlock>
             {categories.map(c => (
-                <Categories key={c.name}>{c.text}</Categories>
-            ))}
-        </S.CategoriBlock>
+                <S.Category
+                    key={c.name}
+                    activeClassName="active"
+                    exact={c.name === 'all'}
+                    to={c.name === 'all' ? '/' : `/${c.name}`}
+                >{c.text}</S.Category>
+            ))
+            }
+        </S.CategoriBlock >
     )
 }
 export default Categories;
