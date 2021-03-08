@@ -1,11 +1,10 @@
 import React from 'react';
 
-
 const TodoItem = ({ todo, onToggle, onRemove }) => {
     return (
         <div>
-            <input
-                type="checkbox"
+            <input type="checkbox"
+
                 onClick={() => onToggle(todo.id)}
                 checked={todo.done}
                 readOnly={true}
@@ -13,14 +12,14 @@ const TodoItem = ({ todo, onToggle, onRemove }) => {
             <span style={{ textDecoration: todo.done ? 'line-through' : 'none' }}>
                 {todo.text}
             </span>
-            <button onClick={() => onRemove(todo.id)}>삭제</button>
-        </div >
-    );
-};
+            <buttom onClick={() => onRemove(todo.id)}>삭제</buttom>
+        </div>
+    )
+}
 
 const Todos = ({
-    input, // 인풋에 입력되는 텍스트
-    todos, // 할 일 목록이 들어 있는 객체
+    input,
+    todos,
     onChangeInput,
     onInsert,
     onToggle,
@@ -29,7 +28,7 @@ const Todos = ({
     const onSubmit = e => {
         e.preventDefault();
         onInsert(input);
-        onChangeInput(''); // 등록 후 인풋 초기화
+        onChangeInput('');
     };
     const onChange = e => onChangeInput(e.target.value);
     return (
@@ -40,7 +39,7 @@ const Todos = ({
             </form>
             <div>
                 {todos.map(todo => (
-                    <TodoItem
+                    < TodoItem
                         todo={todo}
                         key={todo.id}
                         onToggle={onToggle}
