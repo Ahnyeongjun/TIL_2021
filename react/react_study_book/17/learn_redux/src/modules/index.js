@@ -1,8 +1,8 @@
-import { combineReucers } from 'redux';
+import { combineReducers } from 'redux';
 import counter from './counter';
 import todos from './todos';
 
-const rootReducer = combineReucers({
+const rootReducer = combineReducers({
     counter,
     todos,
 });

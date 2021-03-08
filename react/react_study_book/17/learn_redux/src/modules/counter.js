@@ -5,7 +5,7 @@ export const increase = () => ({ type: INCREASE });
 export const decrease = () => ({ type: DECREASE });
 
 const initialState = {
-    number= 0
+    number: 0
 };
 
 function counter(state = initialState, action) {

@@ -1,13 +1,13 @@
 import './App.css';
-import Counter from './components/Counter'
-import Todos from './components/Todos';
+import CounterContainer from './components/CountContainer';
+import TodosContainer from './components/TodosContainer';
 
 function App() {
   return (
     <div>
-      <Counter number={0} />
+      <CounterContainer />
       <hr />
-      <Todos />
+      <TodosContainer />
     </div>
   );
 }
