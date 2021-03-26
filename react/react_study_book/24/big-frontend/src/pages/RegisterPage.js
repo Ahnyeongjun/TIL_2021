@@ -4,7 +4,8 @@ import RegisterForm from '../containers/auth/RegisterForm';
 
 const RegisterPage = () => {
     return (
-        <AuthTemplate>
+        <AuthTemplate
+            type="Register">
             <RegisterForm />
         </AuthTemplate>
     )
