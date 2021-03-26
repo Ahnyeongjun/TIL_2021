@@ -1,14 +1,8 @@
-import React from 'react';
 import styled from 'styled-components';
-import palette from '../../lib/styles/palette';
-import { Link } from 'react-router-dom';
-
-/**
- * 회원가입 / 로그인 페이지의 레이아웃을 담당하는 컴포넌트입니다.
- */
+import palette from '../../../lib/styles/palette';
 
 /* 화면 전체를 채움 */
-const AuthTemplateBlock = styled.div`
+export const AuthTemplateBlock = styled.div`
   position: absolute;
 
   left: 0;
@@ -25,7 +19,7 @@ const AuthTemplateBlock = styled.div`
 `;
 
 /* 흰색 박스 */
-const WhiteBox = styled.div`
+export const WhiteBox = styled.div`
   display:block;
 
   .logo-area {
@@ -44,7 +38,7 @@ const WhiteBox = styled.div`
   border-radius: 2rem;
 `;
 
-const ExplainBox = styled.div`
+export const ExplainBox = styled.div`
   display:block;  
   .title{
     display:block;
@@ -62,25 +56,3 @@ const ExplainBox = styled.div`
   opacity:1; 
   padding: 5rem;
 `;
-const AuthTemplate = ({ children }) => {
-  return (
-    <AuthTemplateBlock>
-      <ExplainBox>
-        <div className="title">
-          title
-        </div>
-        <div className="content">
-          contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent
-        </div>
-
-      </ExplainBox>
-
-      <WhiteBox >
-        {children}
-      </WhiteBox>
-
-    </AuthTemplateBlock >
-  );
-};
-
-export default AuthTemplate;
