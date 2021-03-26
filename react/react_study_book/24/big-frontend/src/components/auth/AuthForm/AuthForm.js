@@ -18,11 +18,11 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
       <h2>{text}</h2  >
       <form onSubmit={onSubmit}>
         <S.StyledInput
-          autoComplete="username"
-          name="username"
+          autoComplete="email"
+          name="email"
           placeholder="아이디"
           onChange={onChange}
-          value={form.username}
+          value={form.email}
         />
         <S.StyledInput
           autoComplete="new-password"
