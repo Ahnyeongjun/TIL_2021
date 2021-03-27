@@ -8,11 +8,10 @@ import { withRouter } from 'react-router-dom';
 const RegisterForm = ({ history }) => {
     const [error, setError] = useState(null);
     const dispatch = useDispatch();
-    const { form, auth, authError, user } = useSelector(({ auth, user }) => ({
+    const { form, auth, authError } = useSelector(({ auth }) => ({
         form: auth.register,
         auth: auth.auth,
         authError: auth.authError,
-        user: user.user,
     }));
     // 인풋 변경 이벤트 핸들러
     const onChange = e => {
@@ -29,9 +28,9 @@ const RegisterForm = ({ history }) => {
     // 폼 등록 이벤트 핸들러
     const onSubmit = e => {
         e.preventDefault();
-        const { email, password, passwordConfirm } = form;
+        const { email, name, password, passwordConfirm } = form;
         // 하나라도 비어있다면
-        if ([email, password, passwordConfirm].includes('')) {
+        if ([email, name, password, passwordConfirm].includes('')) {
             setError('빈 칸을 모두 입력하세요.');
             return;
         }
@@ -44,7 +43,7 @@ const RegisterForm = ({ history }) => {
             );
             return;
         }
-        dispatch(register({ email, password }));
+        dispatch(register({ email, password, name }));
     };
 
     // 컴포넌트가 처음 렌더링 될 때 form 을 초기화함
@@ -68,18 +67,11 @@ const RegisterForm = ({ history }) => {
         if (auth) {
             console.log('회원가입 성공');
             console.log(auth);
-            dispatch(check());
-        }
-    }, [auth, authError, dispatch]);
-
-    // user 값이 잘 설정되었는지 확인
-    useEffect(() => {
-        if (user) {
-            console.log('check API 성공');
-            console.log(user);
             history.push('/'); // 홈 화면으로 이동
         }
-    }, [history, user]);
+    }, [auth, authError]);
+
+    // user 값이 잘 설정되었는지 확인
 
     return (
         <AuthForm

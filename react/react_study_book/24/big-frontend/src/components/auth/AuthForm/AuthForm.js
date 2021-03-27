@@ -42,6 +42,16 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
             value={form.passwordConfirm}
           />
         )}
+        {type === 'register' && (
+          <S.StyledInput
+            autoComplete="new-name"
+            name="name"
+            placeholder="이름"
+            type="name"
+            onChange={onChange}
+            value={form.name}
+          />
+        )}
         <Button cyan fullWidth style={{ marginTop: '1rem' }}>
           {text}
         </Button>
