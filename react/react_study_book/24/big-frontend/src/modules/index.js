@@ -6,12 +6,11 @@ import user, { userSaga } from './user';
 
 const rootReducer = combineReducers({
     auth,
-    loading,
-    user,
+    loading
 });
 
 export function* rootSaga() {
-    yield all([authSaga(), userSaga()]);
+    yield all([authSaga()]);
 }
 
 export default rootReducer;

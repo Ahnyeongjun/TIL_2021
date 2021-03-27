@@ -52,6 +52,7 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
             value={form.name}
           />
         )}
+        {error && <S.ErrorMessage>{error}</S.ErrorMessage>}
         <Button cyan fullWidth style={{ marginTop: '1rem' }}>
           {text}
         </Button>

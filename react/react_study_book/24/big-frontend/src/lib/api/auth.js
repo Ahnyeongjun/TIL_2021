@@ -1,7 +1,7 @@
 import client from './client'
 
-export const login = ({ username, password }) =>
-    client.post(' http://localhost:5000/user/login', { username, password });
+export const login = ({ email, password }) =>
+    client.post(' http://localhost:5000/user/login', { email, password });
 
 export const register = ({ email, password, name }) =>
     client.post('http://localhost:5000/user/register', { email, password, name });

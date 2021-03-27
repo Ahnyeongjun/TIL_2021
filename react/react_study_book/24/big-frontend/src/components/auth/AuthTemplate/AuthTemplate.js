@@ -7,10 +7,10 @@ const AuthTemplate = ({ children, type }) => {
   return (
     <S.AuthTemplateBlock>
       <S.ExplainBox>
-        {type === 'login' ? (
-          <div className="title">회원가입</div>
-        ) : (
+        {type === 'Login' ? (
           <div className="title">로그인</div>
+        ) : (
+          <div className="title">회원가입</div>
         )}
         <div className="content">
           {type}

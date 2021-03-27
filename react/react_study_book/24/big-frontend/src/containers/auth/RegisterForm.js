@@ -56,6 +56,7 @@ const RegisterForm = ({ history }) => {
         if (authError) {
             // 계정명이 이미 존재할 때
             if (authError.response.status === 409) {
+                console.log("중복");
                 setError('이미 존재하는 계정명입니다.');
                 return;
             }
@@ -63,11 +64,10 @@ const RegisterForm = ({ history }) => {
             setError('회원가입 실패');
             return;
         }
-
         if (auth) {
             console.log('회원가입 성공');
             console.log(auth);
-            history.push('/'); // 홈 화면으로 이동
+            history.push('/login'); // 홈 화면으로 이동
         }
     }, [auth, authError]);
 
