@@ -1,38 +1,39 @@
 import React, { useCallback, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Button from '../components/common/Button';
 import Header from '../components/common/Header';
-import { getAuthInfoSaga } from "../modules/redux/auth";
+import { Logout } from "../lib/LOG";
+import { useHistory } from "react-router";
+import { checkIsLogin } from "../lib/REQUEST_API";
 
 const PostListPage = () => {
-    const username = useSelector((state) => state.auth.username);
-
-    const dispatch = useDispatch();
-
-    const initAuthName = useCallback(() => {
-        dispatch(getAuthInfoSaga());
-    }, [dispatch]);
-
-
+    const history = useHistory();
     useEffect(() => {
-        initAuthName();
+        checkIsLogin().then(isLogin => {
+            !isLogin && history.push("/login");
+            alert(isLogin);
+        });
     }, []);
-    if (username) {
-        return (
-            <>
-                <Header username={username} />
-                <div>
-                    {username}
-                </div>
-            </>)
+
+    const onLogout = () => {
+        try {
+            Logout();
+        }
+        catch (error) {
+            console.log(error);
+        }
     }
-    else {
-        return (
-            <>
-                <Header />
-                <div>
-                    나야                </div>
-            </>)
-    }
+
+
+    const username = "a";
+
+    return (
+        <>
+            <Header username={username} onLogout={onLogout} />
+            <div>
+                {username}
+            </div>
+        </>)
+
 }
+
+
 export default PostListPage;
