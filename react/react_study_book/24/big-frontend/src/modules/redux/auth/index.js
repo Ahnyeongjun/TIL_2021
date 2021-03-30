@@ -13,12 +13,13 @@ export const getAuthInfoSaga = () => ({
 
 const initialState = {
 	username: "",
+	isLoading: true,
 };
 
 const authReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case SET_AUTH_INFO_NAME: {
-			return { ...state, username: action.payload };
+			return { ...state, username: action.payload, isLoading: false };
 		}
 		default: {
 			return state;
