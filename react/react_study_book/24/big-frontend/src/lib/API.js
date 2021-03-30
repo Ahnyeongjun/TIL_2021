@@ -14,4 +14,7 @@ export const AUTH = {
 	DELETE_USER: () => {
 		return `/uesr/delete`;
 	},
+	TOKEN: () => {
+		return '/user/token';
+	}
 };
