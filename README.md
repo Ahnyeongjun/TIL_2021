@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # 3월
 
 3월에 할것
@@ -53,6 +52,3 @@
 
 5. 많이 쓰는 기능 로그인, 회원가입, 토큰 따로 만들기(express, springbooot)
 
-=======
-test_raspberry_server
->>>>>>> a/master
