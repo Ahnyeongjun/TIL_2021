@@ -1,6 +1,7 @@
 import A from "./a";
+import Props from "./props";
 function App() {
-  return <A></A>;
+  return <Props name="react" />;
 }
 
 export default App;
