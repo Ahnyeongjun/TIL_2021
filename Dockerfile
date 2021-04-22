@@ -1,9 +1,8 @@
 FROM node:14-slim
-
-COPY ./package*.json ./
-RUN npm ci
-
-COPY ./ .
+COPY package.json /src/package.json
+RUN  cd /src; npm install
+COPY . /src
 EXPOSE 8080
+WORKDIR /src
 
-CMD ["npm", "start"]
+CMD node app.js
