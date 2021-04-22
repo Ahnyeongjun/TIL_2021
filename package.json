@@ -1,0 +1,22 @@
+{
+  "name": "testdocker_js",
+  "version": "1.0.0",
+  "description": "TestDocker_JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ahnyeongjun/TestDocker_JS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ahnyeongjun/TestDocker_JS/issues"
+  },
+  "homepage": "https://github.com/Ahnyeongjun/TestDocker_JS#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
