@@ -1,7 +1,13 @@
-import A from "./a";
-import Props from "./props";
+import CounterContainer from "./components/CountContainer";
+import TodosContainer from "./components/TodosContainer";
 function App() {
-  return <Props name="react" />;
+  return (
+    <div>
+      <CounterContainer />
+      <hr />
+      <TodosContainer />
+    </div>
+  );
 }
 
 export default App;
