@@ -3,61 +3,77 @@ import UserList from "./UserList";
 import { useRef, useState } from "react";
 import CreateUser from "./createUser";
 function App() {
-  const [inputs, setInput] = useState({
+  const [inputs, setInputs] = useState({
     username: "",
     email: "",
   });
+  const { username, email } = inputs;
   const [users, setUsers] = useState([
     {
       id: 1,
-      username: "name1",
-      email: "111",
+      username: "velopert",
+      email: "public.velopert@gmail.com",
+      active: false,
     },
     {
       id: 2,
-      username: "name2",
-      email: "222",
+      username: "tester",
+      email: "tester@example.com",
+      active: true,
     },
     {
       id: 3,
-      username: "name3",
-      email: "333",
+      username: "liz",
+      email: "liz@example.com",
+      active: false,
     },
   ]);
 
-  const { username, email } = inputs;
+  const nextId = useRef(4);
   const onChange = (e) => {
     const { name, value } = e.target;
-    setInput({
+    setInputs({
       ...inputs,
       [name]: value,
     });
   };
 
-  const nextId = useRef(4);
   const onCreate = () => {
     const user = {
       id: nextId.current,
       username,
       email,
+      active: false,
     };
-    setUsers([...users, user]);
-    setInput({
+    setUsers(users.concat(user));
+    nextId.current += 1;
+    setInputs({
       username: "",
       email: "",
     });
-    nextId.current += 1;
   };
+
+  const onRemove = (id) => {
+    setUsers(users.filter((user) => user.id !== id));
+  };
+
+  const onToggle = (id) => {
+    setUsers(
+      users.map((user) =>
+        user.id === id ? { ...user, active: !user.active } : user
+      )
+    );
+  };
+
   return (
     <div>
       <CreateUser
         username={username}
         email={email}
-        onCreate={onCreate}
         onChange={onChange}
+        onCreate={onCreate}
       />
-      <UserList users={users} onCreate={onCreate} />
-      <InputSample />
+      <UserList users={users} onRemove={onRemove} onToggle={onToggle} />
     </div>
   );
 }
