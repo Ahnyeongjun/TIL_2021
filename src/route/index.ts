@@ -6,7 +6,11 @@ import {
   duplicateCheckUserWithId,
   lengthCheckUserInformation,
 } from '../controller/validate';
-import { createUserData, createUser } from '../controller/auth';
+import {
+  createUserData,
+  createUser,
+  decryptoPassword,
+} from '../controller/auth';
 route.post(
   '/sign',
   lengthCheckUserInformation,
@@ -15,4 +19,5 @@ route.post(
   createUser,
 );
 
+route.patch('/password', decryptoPassword);
 export default route;

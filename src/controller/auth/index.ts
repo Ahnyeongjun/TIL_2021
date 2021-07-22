@@ -2,12 +2,33 @@ import { Context } from 'koa';
 import crypto from 'crypto';
 import short from 'short-uuid';
 import { User } from '../../entity/User';
+import { getConnection } from 'typeorm';
 
-const cryptoPassword = async (password: any) => {
+const cryptoPassword = async (password: string) => {
   return crypto
     .createHmac('sha512', process.env.CRYPTO as string)
     .update(password)
     .digest('hex');
+};
+
+export const decryptoPassword = async (ctx: any, next: any) => {
+  const user = await getConnection()
+    .createQueryBuilder()
+    .select('user')
+    .from(User, 'user')
+    .where('user.password = :passowrd', {
+      password: cryptoPassword(ctx.request.body.password),
+    })
+    .getOne();
+
+  if (user === undefined) {
+    console.log(`[validate] - decryptoPassword : ${true}`);
+    ctx.status = 200;
+    await next();
+  } else {
+    console.log(`[validate] - decryptoPassword : ${false}`);
+    ctx.status = 403;
+  }
 };
 
 const translator = short(short.constants.flickrBase58, {
