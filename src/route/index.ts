@@ -11,13 +11,6 @@ import {
   createUser,
   decryptoPassword,
 } from '../controller/auth';
-route.post(
-  '/sign',
-  lengthCheckUserInformation,
-  duplicateCheckUserWithId,
-  createUserData,
-  createUser,
-);
-
+route.post('/sign', duplicateCheckUserWithId, createUserData, createUser);
 route.patch('/password', decryptoPassword);
 export default route;
