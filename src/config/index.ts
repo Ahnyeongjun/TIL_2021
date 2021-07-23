@@ -4,7 +4,7 @@ import Koa from 'koa';
 import Router from '@koa/router';
 import cors from '@koa/cors';
 import logger from 'koa-logger';
-import bodyparser from 'koa-bodyparser';
+import bodyparser from 'koa-body';
 import helmet from 'koa-helmet';
 import route from '../route';
 
@@ -17,13 +17,7 @@ export const init = async (app: any) => {
   console.log('dotenv configuration');
   await router.use('/auth', route.routes());
 
-  await app
-    .use(helmet())
-    .use(cors())
-    .use(bodyparser())
-    .use(logger())
-    .use(router.routes())
-    .use(router.allowedMethods());
+  await app.use(helmet()).use(cors()).use(bodyparser()).use(logger()).use(router.routes()).use(router.allowedMethods());
 
   await createConnection({
     type: 'mysql',
