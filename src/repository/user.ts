@@ -3,13 +3,12 @@ import { User } from '../entity';
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
-  public async createUser(name: string, id: string, password: string) {
-    await getRepository(User).createQueryBuilder().insert().into(User).values({ name, id, password }).execute();
+  createUser(name: string, id: string, password: string) {
+    return this.createQueryBuilder().insert().into(User).values({ name, id, password }).execute();
   }
 
-  public async findOneByPassword(password: string) {
-    await getRepository(User)
-      .createQueryBuilder()
+  findOneByPassword(password: string) {
+    return this.createQueryBuilder()
       .select('user')
       .from(User, 'user')
       .where('user.password = :passowrd', {
@@ -17,4 +16,18 @@ export class UserRepository extends Repository<User> {
       })
       .getOne();
   }
+  //   public async createUser(name: string, id: string, password: string) {
+  //     await getRepository(User).createQueryBuilder().insert().into(User).values({ name, id, password }).execute();
+  //   }
+
+  //   public async findOneByPassword(password: string) {
+  //     await getRepository(User)
+  //       .createQueryBuilder()
+  //       .select('user')
+  //       .from(User, 'user')
+  //       .where('user.password = :passowrd', {
+  //         password: password,
+  //       })
+  //       .getOne();
+  //   }
 }
