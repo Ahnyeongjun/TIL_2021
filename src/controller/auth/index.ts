@@ -1,4 +1,4 @@
-import { Context } from 'koa';
+import { Context, Next } from 'koa';
 import crypto from 'crypto';
 import short from 'short-uuid';
 import { User } from '../../entity/User';
@@ -11,7 +11,7 @@ const cryptoPassword = async (password: string) => {
     .digest('hex');
 };
 
-export const decryptoPassword = async (ctx: any, next: any) => {
+export const decryptoPassword = async (ctx: Context, next: Next) => {
   const user = await getConnection()
     .createQueryBuilder()
     .select('user')
@@ -35,7 +35,7 @@ const translator = short(short.constants.flickrBase58, {
   consistentLength: false,
 });
 
-export const createUserData = async (ctx: any, next: any) => {
+export const createUserData = async (ctx: Context, next: Next) => {
   try {
     const { name, id, password } = ctx.request.body;
     ctx.state = { name, id };
@@ -50,7 +50,7 @@ export const createUserData = async (ctx: any, next: any) => {
   }
 };
 
-export const createUser = async (ctx: Context, next: any) => {
+export const createUser = async (ctx: Context, next: Next) => {
   try {
     const { name, id, password } = ctx.state;
     console.log(ctx.request.body);
