@@ -4,7 +4,7 @@ import { User } from '../entity';
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
   public async createUser(name: string, id: string, password: string) {
-    return getRepository(User).createQueryBuilder().insert().into(User).values({ name, id, password }).execute();
+    await getRepository(User).createQueryBuilder().insert().into(User).values({ name, id, password }).execute();
   }
 
   findOneByPassword(password: string) {
