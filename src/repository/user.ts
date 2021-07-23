@@ -3,12 +3,13 @@ import { User } from '../entity';
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
-  createUser(name: string, id: string, password: string) {
-    return this.createQueryBuilder().insert().into(User).values({ name, id, password }).execute();
+  public async createUser(name: string, id: string, password: string) {
+    return getRepository(User).createQueryBuilder().insert().into(User).values({ name, id, password }).execute();
   }
 
   findOneByPassword(password: string) {
-    return this.createQueryBuilder()
+    return getRepository(User)
+      .createQueryBuilder()
       .select('user')
       .from(User, 'user')
       .where('user.password = :passowrd', {
