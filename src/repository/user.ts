@@ -3,8 +3,11 @@ import { User } from '../entity';
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
-  createUser(name: string, id: string, password: string) {
+  public async createUser(name: string, id: string, password: string) {
     return getRepository(User).createQueryBuilder().insert().into(User).values({ name, id, password }).execute();
+  }
+  public async createUser2(name: string, id: string, password: string) {
+    await getRepository(User).createQueryBuilder().insert().into(User).values({ name, id, password }).execute();
   }
 
   findOneByPassword(password: string) {

@@ -3,6 +3,8 @@ import crypto from 'crypto';
 import short from 'short-uuid';
 import { User } from '../../entity/User';
 import { getConnection } from 'typeorm';
+import { UserRepository } from '../../repository/user';
+const userRepository: UserRepository = new UserRepository();
 
 const cryptoPassword = async (password: string) => {
   return crypto
@@ -55,7 +57,8 @@ export const createUser = async (ctx: Context, next: Next) => {
     const { name, id, password } = ctx.state;
     console.log(ctx.request.body);
     console.log(ctx.body);
-    await User.addUser(name, id, password);
+    await userRepository.createUser('S', 'S', 's');
+    // await User.addUser(name, id, password);
     console.log('[data] - createUser : true');
     ctx.status = 201;
   } catch (error) {

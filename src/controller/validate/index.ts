@@ -1,6 +1,6 @@
 import { User } from '../../entity/User';
 import { getConnection } from 'typeorm';
-import { errorCode } from '../../lib/errorcode';
+// import { errorCode } from '../../lib/errorcode';
 import { Context } from 'vm';
 import { Next } from 'koa';
 import { userRequest } from '../../interfaces/request/user';
@@ -16,7 +16,7 @@ export const duplicateCheckUserWithId = async (ctx: Context, next: Next) => {
     await next();
   } else {
     console.log(`[validate] - duplicateCheckUserWithId : ${false}`);
-    ctx.body = await errorCode(102);
+    // ctx.body = await errorCode(102);
     ctx.status = 403;
   }
 };
