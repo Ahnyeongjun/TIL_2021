@@ -2,22 +2,13 @@ import Router from '@koa/router';
 
 const route = new Router();
 
-import {
-  duplicateCheckUserWithId,
-  lengthCheckUserInformation,
-} from '../controller/validate';
-import {
-  createUserData,
-  createUser,
-  decryptoPassword,
-} from '../controller/auth';
-route.post(
-  '/sign',
-  lengthCheckUserInformation,
-  duplicateCheckUserWithId,
-  createUserData,
-  createUser,
-);
+import { duplicateCheckUserWithId, lengthCheckUserInformation } from '../controller/validate';
+import { UserController } from '../controller';
 
-route.patch('/password', decryptoPassword);
+const userController: UserController = new UserController();
+
+route.post('/sign', userController.createUser);
+
+// route.patch('/password', decryptoPassword);
+
 export default route;

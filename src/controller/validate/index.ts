@@ -1,16 +1,12 @@
 import { User } from '../../entity/User';
 import { getConnection } from 'typeorm';
 import { errorCode } from '../../lib/errorcode';
+import { Next, Context } from 'koa';
 
-export const duplicateCheckUserWithId = async (ctx: any, next: any) => {
-  const { id } = ctx.request.body;
+export const duplicateCheckUserWithId = async (ctx: Context, next: Next) => {
+  const { id } = <BaseUser>ctx.request.body;
   console.log(id);
-  const user = await getConnection()
-    .createQueryBuilder()
-    .select('user')
-    .from(User, 'user')
-    .where('user.id = :id', { id: id })
-    .getOne();
+  const user = await getConnection().createQueryBuilder().select('user').from(User, 'user').where('user.id = :id', { id: id }).getOne();
 
   if (user === undefined) {
     console.log(`[validate] - duplicateCheckUserWithId : ${true}`);
@@ -23,9 +19,9 @@ export const duplicateCheckUserWithId = async (ctx: any, next: any) => {
   }
 };
 
-export const lengthCheckUserInformation = async (ctx: any, next: any) => {
-  const { id, name, password } = ctx.request.body;
-  if (!/^{8,20}$/.test(password && id) && name > 1) {
+export const lengthCheckUserInformation = async (ctx: Context, next: Next) => {
+  const { id, name, password } = <BaseUser>ctx.request.body;
+  if (!/^{8,20}$/.test(password && id) && name.length > 1) {
     console.log(`[validate] - lengthCheckUserInformation : ${false}`);
     ctx.status = 403;
   } else {
@@ -34,3 +30,9 @@ export const lengthCheckUserInformation = async (ctx: any, next: any) => {
     await next();
   }
 };
+
+interface BaseUser {
+  id: string;
+  name: string;
+  password: string;
+}
