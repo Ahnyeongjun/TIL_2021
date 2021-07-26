@@ -17,7 +17,7 @@ export const init = async (app: any) => {
 
   await dotenv.config();
   console.log('dotenv configuration');
-  await router.use('/auth', route.routes());
+  router.use('/auth', route(router));
 
   // router.post('/sign', userController.createUser);
   await app.use(helmet()).use(cors()).use(bodyparser()).use(logger()).use(router.routes()).use(router.allowedMethods());

@@ -140,6 +140,7 @@
     "koa-convert": "^1.2.0",
     "koa-helmet": "^6.1.0",
     "koa-logger": "^3.2.1",
+    "koa-route-decors": "^1.0.5",
     "koa-router": "^10.0.0",
     "latest-version": "^5.1.0",
     "levn": "^0.4.1",

@@ -12,4 +12,7 @@ export class UserService {
   public async createUser(name: string, id: string, password: string) {
     return await this.userRepository.createUser(name, id, password);
   }
+  public async findOne() {
+    return await this.userRepository.findOne();
+  }
 }
