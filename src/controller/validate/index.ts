@@ -1,8 +1,7 @@
 import { User } from '../../entity/User';
 import { getConnection } from 'typeorm';
+import { Next, Context } from 'koa';
 // import { errorCode } from '../../lib/errorcode';
-import { Context } from 'vm';
-import { Next } from 'koa';
 import { userRequest } from '../../interfaces/request/user';
 
 export const duplicateCheckUserWithId = async (ctx: Context, next: Next) => {
@@ -32,3 +31,9 @@ export const lengthCheckUserInformation = async (ctx: Context, next: Next) => {
     await next();
   }
 };
+
+interface BaseUser {
+  id: string;
+  name: string;
+  password: string;
+}

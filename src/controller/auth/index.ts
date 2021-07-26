@@ -1,10 +1,8 @@
-import { Context, Next } from 'koa';
+import { Context } from 'koa';
 import crypto from 'crypto';
 import short from 'short-uuid';
 import { User } from '../../entity/User';
 import { getConnection } from 'typeorm';
-import { UserRepository } from '../../repository/user';
-const userRepository: UserRepository = new UserRepository();
 
 const cryptoPassword = async (password: string) => {
   return crypto
@@ -13,7 +11,7 @@ const cryptoPassword = async (password: string) => {
     .digest('hex');
 };
 
-export const decryptoPassword = async (ctx: Context, next: Next) => {
+export const decryptoPassword = async (ctx: any, next: any) => {
   const user = await getConnection()
     .createQueryBuilder()
     .select('user')
@@ -37,7 +35,7 @@ const translator = short(short.constants.flickrBase58, {
   consistentLength: false,
 });
 
-export const createUserData = async (ctx: Context, next: Next) => {
+export const createUserData = async (ctx: any, next: any) => {
   try {
     const { name, id, password } = ctx.request.body;
     ctx.state = { name, id };
@@ -52,13 +50,12 @@ export const createUserData = async (ctx: Context, next: Next) => {
   }
 };
 
-export const createUser = async (ctx: Context, next: Next) => {
+export const createUser = async (ctx: Context, next: any) => {
   try {
     const { name, id, password } = ctx.state;
     console.log(ctx.request.body);
     console.log(ctx.body);
-    await userRepository.createUser('S', 'S', 's');
-    // await User.addUser(name, id, password);
+    await User.addUser(name, id, password);
     console.log('[data] - createUser : true');
     ctx.status = 201;
   } catch (error) {
