@@ -20,6 +20,6 @@
         "allowSyntheticDefaultImports": true,
         "keyofStringsOnly": true
     },
-    "include": ["src", "types/"],
+    "include": ["src", "types/", "study_mobx"],
     "exclude": ["node_modules"]
 }
